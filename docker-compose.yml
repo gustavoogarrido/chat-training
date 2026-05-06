@@ -1,24 +1,12 @@
 version: '3.8'
 services:
-  backend:
-    build:
-      context: .
-      dockerfile: Dockerfile.backend
+  app:
+    build: .
     ports:
       - "8000:8000"
+      - "8501:8501"
     volumes:
       - ./src:/project/src
       - ./data:/project/data
     environment:
       - WATCHFILES_FORCE_POLLING=true
-
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend
-    ports:
-      - "8501:8501"
-    depends_on:
-      - backend
-    volumes:
-      - ./src:/project/src
